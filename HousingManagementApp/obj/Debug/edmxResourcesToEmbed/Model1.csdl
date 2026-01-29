@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HousingStockManagementDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Arrears">
+    <Key>
+      <PropertyRef Name="ArrearsID" />
+    </Key>
+    <Property Name="ArrearsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityID" Type="Int32" Nullable="false" />
+    <Property Name="StreetID" Type="Int32" Nullable="false" />
+    <Property Name="HouseNumberID" Type="Int32" Nullable="false" />
+    <Property Name="Flat" Type="Int32" />
+    <Property Name="OwnerID" Type="Int32" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Water" Type="Double" />
+    <Property Name="ElectricPower" Type="Double" />
+    <NavigationProperty Name="City" Relationship="Self.FK_Arrears_City" FromRole="Arrears" ToRole="City" />
+    <NavigationProperty Name="HouseNumber" Relationship="Self.FK_Arrears_HouseNumber" FromRole="Arrears" ToRole="HouseNumber" />
+    <NavigationProperty Name="Owner" Relationship="Self.FK_Arrears_Owner" FromRole="Arrears" ToRole="Owner" />
+    <NavigationProperty Name="Street" Relationship="Self.FK_Arrears_Street" FromRole="Arrears" ToRole="Street" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Arrears" Relationship="Self.FK_Arrears_City" FromRole="City" ToRole="Arrears" />
+    <NavigationProperty Name="HousingStock" Relationship="Self.FK_HousingStock_City" FromRole="City" ToRole="HousingStock" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_City" FromRole="City" ToRole="Payments" />
+  </EntityType>
+  <EntityType Name="HouseNumber">
+    <Key>
+      <PropertyRef Name="HouseNumberID" />
+    </Key>
+    <Property Name="HouseNumberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HouseNumber1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Arrears" Relationship="Self.FK_Arrears_HouseNumber" FromRole="HouseNumber" ToRole="Arrears" />
+    <NavigationProperty Name="HousingStock" Relationship="Self.FK_HousingStock_HouseNumber" FromRole="HouseNumber" ToRole="HousingStock" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_HouseNumber" FromRole="HouseNumber" ToRole="Payments" />
+  </EntityType>
+  <EntityType Name="HousingStock">
+    <Key>
+      <PropertyRef Name="HousingStockID" />
+    </Key>
+    <Property Name="HousingStockID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StreetID" Type="Int32" Nullable="false" />
+    <Property Name="HouseNumberID" Type="Int32" Nullable="false" />
+    <Property Name="CityID" Type="Int32" Nullable="false" />
+    <Property Name="BeginningManagement" Type="DateTime" Precision="0" />
+    <Property Name="Floors" Type="Int32" />
+    <Property Name="Flats" Type="Int32" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="Square" Type="Double" />
+    <NavigationProperty Name="City" Relationship="Self.FK_HousingStock_City" FromRole="HousingStock" ToRole="City" />
+    <NavigationProperty Name="HouseNumber" Relationship="Self.FK_HousingStock_HouseNumber" FromRole="HousingStock" ToRole="HouseNumber" />
+    <NavigationProperty Name="Street" Relationship="Self.FK_HousingStock_Street" FromRole="HousingStock" ToRole="Street" />
+  </EntityType>
+  <EntityType Name="Owner">
+    <Key>
+      <PropertyRef Name="OwnerID" />
+    </Key>
+    <Property Name="OwnerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OwnerFIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Arrears" Relationship="Self.FK_Arrears_Owner" FromRole="Owner" ToRole="Arrears" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_Street" FromRole="Owner" ToRole="Payments" />
+  </EntityType>
+  <EntityType Name="Payments">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+    </Key>
+    <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OwnerID" Type="Int32" Nullable="false" />
+    <Property Name="CityID" Type="Int32" Nullable="false" />
+    <Property Name="StreetID" Type="Int32" Nullable="false" />
+    <Property Name="HouseNumberID" Type="Int32" Nullable="false" />
+    <Property Name="Flat" Type="Int32" />
+    <Property Name="Period" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Accrual" Type="Double" />
+    <Property Name="Paid" Type="Double" />
+    <NavigationProperty Name="City" Relationship="Self.FK_Payments_City" FromRole="Payments" ToRole="City" />
+    <NavigationProperty Name="HouseNumber" Relationship="Self.FK_Payments_HouseNumber" FromRole="Payments" ToRole="HouseNumber" />
+    <NavigationProperty Name="Owner" Relationship="Self.FK_Payments_Street" FromRole="Payments" ToRole="Owner" />
+    <NavigationProperty Name="Street" Relationship="Self.FK_Payments_Street1" FromRole="Payments" ToRole="Street" />
+  </EntityType>
+  <EntityType Name="Street">
+    <Key>
+      <PropertyRef Name="StreetID" />
+    </Key>
+    <Property Name="StreetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StreetName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Arrears" Relationship="Self.FK_Arrears_Street" FromRole="Street" ToRole="Arrears" />
+    <NavigationProperty Name="HousingStock" Relationship="Self.FK_HousingStock_Street" FromRole="Street" ToRole="HousingStock" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_Street1" FromRole="Street" ToRole="Payments" />
+  </EntityType>
+  <Association Name="FK_Arrears_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Arrears" Type="Self.Arrears" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="Arrears">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Arrears_HouseNumber">
+    <End Role="HouseNumber" Type="Self.HouseNumber" Multiplicity="1" />
+    <End Role="Arrears" Type="Self.Arrears" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HouseNumber">
+        <PropertyRef Name="HouseNumberID" />
+      </Principal>
+      <Dependent Role="Arrears">
+        <PropertyRef Name="HouseNumberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Arrears_Owner">
+    <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+    <End Role="Arrears" Type="Self.Arrears" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owner">
+        <PropertyRef Name="OwnerID" />
+      </Principal>
+      <Dependent Role="Arrears">
+        <PropertyRef Name="OwnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Arrears_Street">
+    <End Role="Street" Type="Self.Street" Multiplicity="1" />
+    <End Role="Arrears" Type="Self.Arrears" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Street">
+        <PropertyRef Name="StreetID" />
+      </Principal>
+      <Dependent Role="Arrears">
+        <PropertyRef Name="StreetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HousingStock_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="HousingStock" Type="Self.HousingStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="HousingStock">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payments_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HousingStock_HouseNumber">
+    <End Role="HouseNumber" Type="Self.HouseNumber" Multiplicity="1" />
+    <End Role="HousingStock" Type="Self.HousingStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HouseNumber">
+        <PropertyRef Name="HouseNumberID" />
+      </Principal>
+      <Dependent Role="HousingStock">
+        <PropertyRef Name="HouseNumberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payments_HouseNumber">
+    <End Role="HouseNumber" Type="Self.HouseNumber" Multiplicity="1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HouseNumber">
+        <PropertyRef Name="HouseNumberID" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="HouseNumberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HousingStock_Street">
+    <End Role="Street" Type="Self.Street" Multiplicity="1" />
+    <End Role="HousingStock" Type="Self.HousingStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Street">
+        <PropertyRef Name="StreetID" />
+      </Principal>
+      <Dependent Role="HousingStock">
+        <PropertyRef Name="StreetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payments_Street">
+    <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owner">
+        <PropertyRef Name="OwnerID" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="OwnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payments_Street1">
+    <End Role="Street" Type="Self.Street" Multiplicity="1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Street">
+        <PropertyRef Name="StreetID" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="StreetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HousingStockManagementDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Arrears" EntityType="Self.Arrears" />
+    <EntitySet Name="City" EntityType="Self.City" />
+    <EntitySet Name="HouseNumber" EntityType="Self.HouseNumber" />
+    <EntitySet Name="HousingStock" EntityType="Self.HousingStock" />
+    <EntitySet Name="Owner" EntityType="Self.Owner" />
+    <EntitySet Name="Payments" EntityType="Self.Payments" />
+    <EntitySet Name="Street" EntityType="Self.Street" />
+    <AssociationSet Name="FK_Arrears_City" Association="Self.FK_Arrears_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Arrears" EntitySet="Arrears" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Arrears_HouseNumber" Association="Self.FK_Arrears_HouseNumber">
+      <End Role="HouseNumber" EntitySet="HouseNumber" />
+      <End Role="Arrears" EntitySet="Arrears" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Arrears_Owner" Association="Self.FK_Arrears_Owner">
+      <End Role="Owner" EntitySet="Owner" />
+      <End Role="Arrears" EntitySet="Arrears" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Arrears_Street" Association="Self.FK_Arrears_Street">
+      <End Role="Street" EntitySet="Street" />
+      <End Role="Arrears" EntitySet="Arrears" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HousingStock_City" Association="Self.FK_HousingStock_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="HousingStock" EntitySet="HousingStock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payments_City" Association="Self.FK_Payments_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HousingStock_HouseNumber" Association="Self.FK_HousingStock_HouseNumber">
+      <End Role="HouseNumber" EntitySet="HouseNumber" />
+      <End Role="HousingStock" EntitySet="HousingStock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payments_HouseNumber" Association="Self.FK_Payments_HouseNumber">
+      <End Role="HouseNumber" EntitySet="HouseNumber" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HousingStock_Street" Association="Self.FK_HousingStock_Street">
+      <End Role="Street" EntitySet="Street" />
+      <End Role="HousingStock" EntitySet="HousingStock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payments_Street" Association="Self.FK_Payments_Street">
+      <End Role="Owner" EntitySet="Owner" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payments_Street1" Association="Self.FK_Payments_Street1">
+      <End Role="Street" EntitySet="Street" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

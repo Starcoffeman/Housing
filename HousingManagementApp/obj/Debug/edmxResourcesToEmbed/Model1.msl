@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище HousingStockManagementDBModelContainer" CdmEntityContainer="HousingStockManagementDBEntities">
+    <EntitySetMapping Name="Arrears">
+      <EntityTypeMapping TypeName="HousingStockManagementDBModel.Arrears">
+        <MappingFragment StoreEntitySet="Arrears">
+          <ScalarProperty Name="ArrearsID" ColumnName="ArrearsID" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="StreetID" ColumnName="StreetID" />
+          <ScalarProperty Name="HouseNumberID" ColumnName="HouseNumberID" />
+          <ScalarProperty Name="Flat" ColumnName="Flat" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Water" ColumnName="Water" />
+          <ScalarProperty Name="ElectricPower" ColumnName="ElectricPower" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="City">
+      <EntityTypeMapping TypeName="HousingStockManagementDBModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HouseNumber">
+      <EntityTypeMapping TypeName="HousingStockManagementDBModel.HouseNumber">
+        <MappingFragment StoreEntitySet="HouseNumber">
+          <ScalarProperty Name="HouseNumberID" ColumnName="HouseNumberID" />
+          <ScalarProperty Name="HouseNumber1" ColumnName="HouseNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HousingStock">
+      <EntityTypeMapping TypeName="HousingStockManagementDBModel.HousingStock">
+        <MappingFragment StoreEntitySet="HousingStock">
+          <ScalarProperty Name="HousingStockID" ColumnName="HousingStockID" />
+          <ScalarProperty Name="StreetID" ColumnName="StreetID" />
+          <ScalarProperty Name="HouseNumberID" ColumnName="HouseNumberID" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="BeginningManagement" ColumnName="BeginningManagement" />
+          <ScalarProperty Name="Floors" ColumnName="Floors" />
+          <ScalarProperty Name="Flats" ColumnName="Flats" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Square" ColumnName="Square" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Owner">
+      <EntityTypeMapping TypeName="HousingStockManagementDBModel.Owner">
+        <MappingFragment StoreEntitySet="Owner">
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="OwnerFIO" ColumnName="OwnerFIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="HousingStockManagementDBModel.Payments">
+        <MappingFragment StoreEntitySet="Payments">
+          <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="StreetID" ColumnName="StreetID" />
+          <ScalarProperty Name="HouseNumberID" ColumnName="HouseNumberID" />
+          <ScalarProperty Name="Flat" ColumnName="Flat" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+          <ScalarProperty Name="Accrual" ColumnName="Accrual" />
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Street">
+      <EntityTypeMapping TypeName="HousingStockManagementDBModel.Street">
+        <MappingFragment StoreEntitySet="Street">
+          <ScalarProperty Name="StreetID" ColumnName="StreetID" />
+          <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,58 @@
+﻿<Window x:Class="HousingManagementApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Управляющая компания - Главная" 
+        Height="450" Width="600"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Background="#F4E8D3" >
+            <TextBlock Text="Управляющая компания" 
+                       FontSize="24" 
+                       FontWeight="Bold" 
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,10"/>
+            <Image Source="logo.png" Width="60" Height="60"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center">
+
+            <Button Content="📋 Список заявок" 
+                    Width="250" 
+                    Height="50" 
+                    FontSize="16"
+                    Margin="0,10"
+                    Click="RequestsButton_Click"/>
+
+            <Button Content="🏠 Адреса и сотрудники" 
+                    Width="250" 
+                    Height="50" 
+                    FontSize="16"
+                    Margin="0,10"
+                    Click="AddressesButton_Click"/>
+
+            <Button Content="📊 История выполнения заявок" 
+                    Width="250" 
+                    Height="50" 
+                    FontSize="16"
+                    Margin="0,10"
+                    Click="HistoryButton_Click"/>
+
+            <Button Content="📄 Отчеты" 
+                    Width="250" 
+                    Height="50" 
+                    FontSize="16"
+                    Margin="0,10"
+                    Click="ReportsButton_Click"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

@@ -1,0 +1,75 @@
+﻿<Window x:Class="HousingManagementApp.AddressesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Адреса и сотрудники" 
+        Height="600" Width="800"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#F4E8D3" Padding="10">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="← Назад" 
+                        Click="BackButton_Click"
+                        Margin="0,0,20,0"/>
+                <TextBlock Text="Адреса и сотрудники" 
+                           FontSize="20" 
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <TabControl Grid.Row="1" Margin="10">
+            <TabItem Header="Адреса">
+                <DataGrid x:Name="AddressesGrid" 
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          ItemsSource="{Binding}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Город" 
+                                          Binding="{Binding CityName}" 
+                                          Width="150"/>
+                        <DataGridTextColumn Header="Улица" 
+                                          Binding="{Binding StreetName}" 
+                                          Width="200"/>
+                        <DataGridTextColumn Header="Дом" 
+                                          Binding="{Binding HouseNumber}" 
+                                          Width="100"/>
+                        <DataGridTextColumn Header="Этажей" 
+                                          Binding="{Binding Floors}" 
+                                          Width="80"/>
+                        <DataGridTextColumn Header="Квартир" 
+                                          Binding="{Binding Flats}" 
+                                          Width="80"/>
+                        <DataGridTextColumn Header="Площадь" 
+                                          Binding="{Binding Square, StringFormat=N2}" 
+                                          Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Header="Сотрудники">
+                <DataGrid x:Name="EmployeesGrid" 
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          ItemsSource="{Binding}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ФИО" 
+                                          Binding="{Binding OwnerFIO}" 
+                                          Width="300"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+
+        <Border Grid.Row="2" Background="#F4E8D3" Padding="10">
+            <TextBlock x:Name="StatusText" 
+                       Text="Загрузка данных..."/>
+        </Border>
+    </Grid>
+</Window>

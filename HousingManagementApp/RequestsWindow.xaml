@@ -1,0 +1,82 @@
+﻿<Window x:Class="HousingManagementApp.RequestsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Управление заявками" 
+        Height="600" Width="900"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#F4E8D3" Padding="10">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="← Назад" 
+                        Click="BackButton_Click"
+                        Margin="0,0,20,0"/>
+
+                <Button Content="➕ Новая заявка" 
+                        Click="AddRequestButton_Click"
+                        Background="#67BA80"
+                        Foreground="White"
+                        Margin="0,0,10,0"/>
+
+                <Button Content="✏️ Редактировать" 
+                        Click="EditRequestButton_Click"
+                        Margin="0,0,10,0"/>
+
+                <Button Content="🗑️ Удалить" 
+                        Click="DeleteRequestButton_Click"
+                        Background="#FF6B6B"
+                        Foreground="White"/>
+
+                <TextBlock Text="Список заявок" 
+                           FontSize="20" 
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="20,0,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <DataGrid x:Name="RequestsGrid" 
+                  Grid.Row="1" 
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  ItemsSource="{Binding}"
+                  MouseDoubleClick="RequestsGrid_MouseDoubleClick"
+                  Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" 
+                                  Binding="{Binding RequestId}" 
+                                  Width="50"/>
+                <DataGridTextColumn Header="Адрес" 
+                                  Binding="{Binding FullAddress}" 
+                                  Width="200"/>
+                <DataGridTextColumn Header="Заявитель" 
+                                  Binding="{Binding ApplicantName}" 
+                                  Width="150"/>
+                <DataGridTextColumn Header="Телефон" 
+                                  Binding="{Binding Phone}" 
+                                  Width="120"/>
+                <DataGridTextColumn Header="Исполнитель" 
+                                  Binding="{Binding ExecutorName}" 
+                                  Width="150"/>
+                <DataGridTextColumn Header="Статус" 
+                                  Binding="{Binding Status}" 
+                                  Width="100"/>
+                <DataGridTextColumn Header="Дата создания" 
+                                  Binding="{Binding CreatedDate, StringFormat=dd.MM.yyyy}" 
+                                  Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Border Grid.Row="2" Background="#F4E8D3" Padding="10">
+            <TextBlock x:Name="StatusText" 
+                       Text="Загрузка заявок..."/>
+        </Border>
+    </Grid>
+</Window>
